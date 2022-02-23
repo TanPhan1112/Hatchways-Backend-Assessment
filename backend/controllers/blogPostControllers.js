@@ -57,29 +57,114 @@ export const route2 = async (req, res) => {
                     if (sortBy == "id" || sortBy == "reads" || sortBy == "likes" || sortBy == "popularity" || sortBy == null || sortBy == "") {
                         switch (sortBy) {
                             case "id":
-                                uniqueData.sort((a, b) => {
-                                    return a.id - b.id;
-                                });
+                                if (direction == "asc" || direction == null || direction == "") {
+                                    uniqueData.sort((a, b) => {
+                                        return a.id - b.id;
+                                    });
+                                    Object.keys(uniqueData).forEach(function (key) {
+                                        console.log(uniqueData[key].id);
+                                        console.log(uniqueData[key].tags);
+                                    });
+                                    res.status(200).json(uniqueData);
+                                } else if (direction == "desc") {
+                                    uniqueData.sort((a, b) => {
+                                        return b.id - a.id;
+                                    });
+                                    Object.keys(uniqueData).forEach(function (key) {
+                                        console.log(uniqueData[key].id);
+                                        console.log(uniqueData[key].tags);
+                                    });
+                                    res.status(200).json(uniqueData);
+                                } else {
+                                    res.status(400).json({
+                                        "error": "direction parameter is invalid"
+                                    });
+                                }
                                 break;
                             case "reads":
-                                uniqueData.sort((a, b) => {
-                                    return a.reads - b.reads;
-                                });
+                                if (direction == "asc" || direction == null || direction == "") {
+                                    uniqueData.sort((a, b) => {
+                                        return a.reads - b.reads;
+                                    });
+                                    Object.keys(uniqueData).forEach(function (key) {
+                                        console.log(uniqueData[key].reads);
+                                        console.log(uniqueData[key].tags);
+                                    });
+                                    res.status(200).json(uniqueData);
+                                } else if (direction == "desc") {
+                                    uniqueData.sort((a, b) => {
+                                        return b.reads - a.reads;
+                                    });
+                                    Object.keys(uniqueData).forEach(function (key) {
+                                        console.log(uniqueData[key].reads);
+                                        console.log(uniqueData[key].tags);
+                                    });
+                                    res.status(200).json(uniqueData);
+                                } else {
+                                    res.status(400).json({
+                                        "error": "direction parameter is invalid"
+                                    });
+                                }
                                 break;
                             case "likes":
-                                uniqueData.sort((a, b) => {
-                                    return a.likes - b.likes;
-                                });
+                                if (direction == "asc" || direction == null || direction == "") {
+                                    uniqueData.sort((a, b) => {
+                                        return a.likes - b.likes;
+                                    });
+                                    Object.keys(uniqueData).forEach(function (key) {
+                                        console.log(uniqueData[key].likes);
+                                        console.log(uniqueData[key].tags);
+                                    });
+                                    res.status(200).json(uniqueData);
+                                } else if (direction == "desc") {
+                                    uniqueData.sort((a, b) => {
+                                        return b.likes - a.likes;
+                                    });
+                                    Object.keys(uniqueData).forEach(function (key) {
+                                        console.log(uniqueData[key].likes);
+                                        console.log(uniqueData[key].tags);
+                                    });
+                                    res.status(200).json(uniqueData);
+                                } else {
+                                    res.status(400).json({
+                                        "error": "direction parameter is invalid"
+                                    });
+                                }
                                 break;
                             case "popularity":
-                                uniqueData.sort((a, b) => {
-                                    return a.popularity - b.popularity;
-                                });
+                                if (direction == "asc" || direction == null || direction == "") {
+                                    uniqueData.sort((a, b) => {
+                                        return a.popularity - b.popularity;
+                                    });
+                                    Object.keys(uniqueData).forEach(function (key) {
+                                        console.log(uniqueData[key].popularity);
+                                        console.log(uniqueData[key].tags);
+                                    });
+                                    res.status(200).json(uniqueData);
+                                } else if (direction == "desc") {
+                                    uniqueData.sort((a, b) => {
+                                        return b.popularity - a.popularity;
+                                    });
+                                    Object.keys(uniqueData).forEach(function (key) {
+                                        console.log(uniqueData[key].popularity);
+                                        console.log(uniqueData[key].tags);
+                                    });
+                                    res.status(200).json(uniqueData);
+                                } else {
+                                    res.status(400).json({
+                                        "error": "direction parameter is invalid"
+                                    });
+                                }
                                 break;
                             default:
                                 uniqueData.sort((a, b) => {
                                     return a.id - b.id;
                                 });
+                                Object.keys(uniqueData).forEach(function (key) {
+                                    console.log(uniqueData[key].id);
+                                    console.log(uniqueData[key].tags);
+                                });
+                                res.status(200).json(uniqueData);
                                 break;
                         }
                     } else {
@@ -87,13 +172,6 @@ export const route2 = async (req, res) => {
                             "error": "sortBy parameter is invalid"
                         });
                     }
-
-                    Object.keys(uniqueData).forEach(function (key) {
-                        console.log(uniqueData[key].id);
-                        console.log(uniqueData[key].popularity);
-                        console.log(uniqueData[key].tags);
-                    });
-                    res.status(200).json(uniqueData);
                 })
                 .catch((error) => {
                     console.log(error);
