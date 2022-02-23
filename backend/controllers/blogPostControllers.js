@@ -9,15 +9,17 @@ export const route1 = (req, res) => {
 };
 
 export const route2 = async (req, res) => {
-    let tag = req.query.tag;
+    let tags = req.query.tags;
+    let sortBy = req.query.sortBy;
+    let direction = req.query.direction;
 
-    if (tag == null || tag == "") {
+    if (tags == null || tags == "") {
         res.status(400).json({
             "error": "Tags parameter is required"
         });
     } else {
-        if (tag.indexOf(',') != -1) {
-            let multiTags = tag.split(',');
+        if (tags.indexOf(',') != -1) {
+            let multiTags = tags.split(',');
             let promiseArray = multiTags.map(eachTag => axios.get(blogPostsAPI + `?tag=${eachTag}`));
 
             axios.all(promiseArray)
@@ -51,11 +53,44 @@ export const route2 = async (req, res) => {
                             }
                         }
                     });
-                    uniqueData.sort((a, b) => {
-                        return a.id - b.id;
-                    });
+
+                    if (sortBy == "id" || sortBy == "reads" || sortBy == "likes" || sortBy == "popularity" || sortBy == null || sortBy == "") {
+                        switch (sortBy) {
+                            case "id":
+                                uniqueData.sort((a, b) => {
+                                    return a.id - b.id;
+                                });
+                                break;
+                            case "reads":
+                                uniqueData.sort((a, b) => {
+                                    return a.reads - b.reads;
+                                });
+                                break;
+                            case "likes":
+                                uniqueData.sort((a, b) => {
+                                    return a.likes - b.likes;
+                                });
+                                break;
+                            case "popularity":
+                                uniqueData.sort((a, b) => {
+                                    return a.popularity - b.popularity;
+                                });
+                                break;
+                            default:
+                                uniqueData.sort((a, b) => {
+                                    return a.id - b.id;
+                                });
+                                break;
+                        }
+                    } else {
+                        res.status(400).json({
+                            "error": "sortBy parameter is invalid"
+                        });
+                    }
+
                     Object.keys(uniqueData).forEach(function (key) {
                         console.log(uniqueData[key].id);
+                        console.log(uniqueData[key].popularity);
                         console.log(uniqueData[key].tags);
                     });
                     res.status(200).json(uniqueData);
@@ -64,7 +99,7 @@ export const route2 = async (req, res) => {
                     console.log(error);
                 });
         } else {
-            let findOneTag = blogPostsAPI + `?tag=${tag}`;
+            let findOneTag = blogPostsAPI + `?tag=${tags}`;
 
             axios.get(findOneTag)
                 .then((response) => {
