@@ -57,6 +57,9 @@ describe("Test the route 2 with tag parameter", () => {
                     if (res.body.posts[i].id > res.body.posts[i + 1].id) {
                         throw new Error("Results are not returned in ascending default order by id!!!");
                     }
+                    if (res.body.posts[i].id == res.body.posts[i + 1].id) {
+                        throw new Error("Results are duplicated by id!!!");
+                    }
                 }
             })
     });
@@ -77,6 +80,9 @@ describe("Test the route 2 with tag parameter", () => {
                     console.log(res.body.posts[i].id);
                     if (res.body.posts[i].id > res.body.posts[i + 1].id) {
                         throw new Error("Results are not returned in ascending default order by id!!!");
+                    }
+                    if (res.body.posts[i].id == res.body.posts[i + 1].id) {
+                        throw new Error("Results are duplicated by id!!!");
                     }
                 }
             })
@@ -101,6 +107,9 @@ describe("Test the route 2 with tag parameter", () => {
                     if (res.body[i].id > res.body[i + 1].id) {
                         throw new Error("Results are not returned in ascending default order by id!!!");
                     }
+                    if (res.body[i].id == res.body[i + 1].id) {
+                        throw new Error("Results are duplicated by id!!!");
+                    }
                 }
             })
     });
@@ -121,6 +130,9 @@ describe("Test the route 2 with tag parameter", () => {
                     console.log(res.body[i].id);
                     if (res.body[i].id > res.body[i + 1].id) {
                         throw new Error("Results are not returned in ascending default order by id!!!");
+                    }
+                    if (res.body[i].id == res.body[i + 1].id) {
+                        throw new Error("Results are duplicated by id!!!");
                     }
                 }
             })
@@ -143,6 +155,9 @@ describe("Test the route 2 with tag parameter", () => {
                     if (res.body[i].id < res.body[i + 1].id) {
                         throw new Error("Results are not returned in descending default order by id!!!");
                     }
+                    if (res.body[i].id == res.body[i + 1].id) {
+                        throw new Error("Results are duplicated by id!!!");
+                    }
                 }
             })
     });
@@ -163,6 +178,9 @@ describe("Test the route 2 with tag parameter", () => {
                     console.log(res.body[i].id);
                     if (res.body[i].id < res.body[i + 1].id) {
                         throw new Error("Results are not returned in descending default order by id!!!");
+                    }
+                    if (res.body[i].id == res.body[i + 1].id) {
+                        throw new Error("Results are duplicated by id!!!");
                     }
                 }
             })
@@ -195,6 +213,9 @@ describe("Test the route 2 with tag & sortBy parameters", () => {
                     if (res.body[i].id > res.body[i + 1].id) {
                         throw new Error("Results are not returned in ascending order by id!!!");
                     }
+                    if (res.body[i].id == res.body[i + 1].id) {
+                        throw new Error("Results are duplicated by id!!!");
+                    }
                 }
             })
     });
@@ -215,6 +236,9 @@ describe("Test the route 2 with tag & sortBy parameters", () => {
                     console.log(res.body[i].reads);
                     if (res.body[i].reads > res.body[i + 1].reads) {
                         throw new Error("Results are not returned in ascending order by reads!!!");
+                    }
+                    if (res.body[i].id == res.body[i + 1].id) {
+                        throw new Error("Results are duplicated by id!!!");
                     }
                 }
             })
@@ -237,6 +261,9 @@ describe("Test the route 2 with tag & sortBy parameters", () => {
                     if (res.body[i].likes > res.body[i + 1].likes) {
                         throw new Error("Results are not returned in ascending order by likes!!!");
                     }
+                    if (res.body[i].id == res.body[i + 1].id) {
+                        throw new Error("Results are duplicated by id!!!");
+                    }
                 }
             })
     });
@@ -257,6 +284,9 @@ describe("Test the route 2 with tag & sortBy parameters", () => {
                     console.log(res.body[i].popularity);
                     if (res.body[i].popularity > res.body[i + 1].popularity) {
                         throw new Error("Results are not returned in ascending order by popularity!!!");
+                    }
+                    if (res.body[i].id == res.body[i + 1].id) {
+                        throw new Error("Results are duplicated by id!!!");
                     }
                 }
             })
@@ -289,6 +319,9 @@ describe("Test the route 2 with tag, sortBy & direction parameters", () => {
                     if (res.body[i].id > res.body[i + 1].id) {
                         throw new Error("Results are not returned in ascending order by id!!!");
                     }
+                    if (res.body[i].id == res.body[i + 1].id) {
+                        throw new Error("Results are duplicated by id!!!");
+                    }
                 }
             })
     });
@@ -309,6 +342,9 @@ describe("Test the route 2 with tag, sortBy & direction parameters", () => {
                     console.log(res.body[i].reads);
                     if (res.body[i].reads > res.body[i + 1].reads) {
                         throw new Error("Results are not returned in ascending order by reads!!!");
+                    }
+                    if (res.body[i].id == res.body[i + 1].id) {
+                        throw new Error("Results are duplicated by id!!!");
                     }
                 }
             })
@@ -331,6 +367,9 @@ describe("Test the route 2 with tag, sortBy & direction parameters", () => {
                     if (res.body[i].likes > res.body[i + 1].likes) {
                         throw new Error("Results are not returned in ascending order by likes!!!");
                     }
+                    if (res.body[i].id == res.body[i + 1].id) {
+                        throw new Error("Results are duplicated by id!!!");
+                    }
                 }
             })
     });
@@ -351,6 +390,9 @@ describe("Test the route 2 with tag, sortBy & direction parameters", () => {
                     console.log(res.body[i].popularity);
                     if (res.body[i].popularity > res.body[i + 1].popularity) {
                         throw new Error("Results are not returned in ascending order by popularity!!!");
+                    }
+                    if (res.body[i].id == res.body[i + 1].id) {
+                        throw new Error("Results are duplicated by id!!!");
                     }
                 }
             })
@@ -373,6 +415,9 @@ describe("Test the route 2 with tag, sortBy & direction parameters", () => {
                     if (res.body[i].id < res.body[i + 1].id) {
                         throw new Error("Results are not returned in descending order by id!!!");
                     }
+                    if (res.body[i].id == res.body[i + 1].id) {
+                        throw new Error("Results are duplicated by id!!!");
+                    }
                 }
             })
     });
@@ -393,6 +438,9 @@ describe("Test the route 2 with tag, sortBy & direction parameters", () => {
                     console.log(res.body[i].reads);
                     if (res.body[i].reads < res.body[i + 1].reads) {
                         throw new Error("Results are not returned in descending order by reads!!!");
+                    }
+                    if (res.body[i].id == res.body[i + 1].id) {
+                        throw new Error("Results are duplicated by id!!!");
                     }
                 }
             })
@@ -415,6 +463,9 @@ describe("Test the route 2 with tag, sortBy & direction parameters", () => {
                     if (res.body[i].likes < res.body[i + 1].likes) {
                         throw new Error("Results are not returned in descending order by likes!!!");
                     }
+                    if (res.body[i].id == res.body[i + 1].id) {
+                        throw new Error("Results are duplicated by id!!!");
+                    }
                 }
             })
     });
@@ -436,6 +487,9 @@ describe("Test the route 2 with tag, sortBy & direction parameters", () => {
                     if (res.body[i].likes < res.body[i + 1].likes) {
                         throw new Error("Results are not returned in descending order by likes!!!");
                     }
+                    if (res.body[i].id == res.body[i + 1].id) {
+                        throw new Error("Results are duplicated by id!!!");
+                    }
                 }
             })
     });
@@ -456,6 +510,9 @@ describe("Test the route 2 with tag, sortBy & direction parameters", () => {
                     console.log(res.body[i].popularity);
                     if (res.body[i].popularity < res.body[i + 1].popularity) {
                         throw new Error("Results are not returned in descending order by popularity!!!");
+                    }
+                    if (res.body[i].id == res.body[i + 1].id) {
+                        throw new Error("Results are duplicated by id!!!");
                     }
                 }
             })
