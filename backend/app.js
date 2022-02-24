@@ -1,5 +1,11 @@
-const { route1, route2 } = require('../controllers/blogPostControllers');
+const express = require("express");
+const routes = require('./routes/blogPostRoutes');
 var mcache = require('memory-cache');
+
+const app = express();
+const PORT = 3000;
+
+routes(app);
 
 // Implement a server side cache to routes
 var cache = (duration) => {
@@ -20,14 +26,10 @@ var cache = (duration) => {
     }
 }
 
-const routes = (app) => {
-    app.route('/api/ping')
-        // GET route 1
-        .get(route1, cache(10))
+app.get('/', cache(10), (req, res) =>
+    setTimeout(() => {
+        res.status(200).send(`Blog Posts application is running on port ${PORT}`)
+    }, 1000) //setTimeout was used to simulate a slow processing request
+);
 
-    app.route('/api/posts')
-        // GET route 2
-        .get(route2, cache(10))
-}
-
-module.exports = routes;
+module.exports = app;
