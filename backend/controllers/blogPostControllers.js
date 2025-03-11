@@ -224,6 +224,7 @@ exports.route2 = async (req, res) => {
     }, 3000) //setTimeout was used to simulate a slow processing request
 };
 
+
 /* const axios = require('axios');
 
 const blogPostsAPI = "https://api.hatchways.io/assessment/blog/posts";
