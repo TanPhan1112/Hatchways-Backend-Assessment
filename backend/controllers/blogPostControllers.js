@@ -223,3 +223,72 @@ exports.route2 = async (req, res) => {
         }
     }, 3000) //setTimeout was used to simulate a slow processing request
 };
+
+/* const axios = require('axios');
+
+const blogPostsAPI = "https://api.hatchways.io/assessment/blog/posts";
+
+exports.route1 = (req, res) => {
+    res.status(200).json({
+        "success": true
+    });
+};
+
+exports.route2 = async (req, res) => {
+    let tags = req.query.tags;
+    let sortBy = req.query.sortBy || 'id';
+    let direction = req.query.direction || 'asc';
+
+    // Check if `tags` parameter is not present
+    if (!tags) {
+        return res.status(400).json({
+            "error": "Tags parameter is required"
+        });
+    }
+
+    try {
+        let tagArray = tags.split(',');
+        let promiseArray = tagArray.map(tag => axios.get(`${blogPostsAPI}?tag=${tag}`));
+        let responses = await Promise.all(promiseArray);
+
+        let postsArray = [];
+        responses.forEach(response => {
+            postsArray = postsArray.concat(response.data.posts);
+        });
+
+        // Remove duplicate posts
+        let uniquePosts = Array.from(new Set(postsArray.map(post => post.id)))
+            .map(id => postsArray.find(post => post.id === id));
+
+        // Sort the posts
+        const validSortBy = ['id', 'reads', 'likes', 'popularity'];
+        const validDirection = ['asc', 'desc'];
+
+        if (!validSortBy.includes(sortBy)) {
+            return res.status(400).json({
+                "error": "sortBy parameter is invalid"
+            });
+        }
+
+        if (!validDirection.includes(direction)) {
+            return res.status(400).json({
+                "error": "direction parameter is invalid"
+            });
+        }
+
+        uniquePosts.sort((a, b) => {
+            if (direction === 'asc') {
+                return a[sortBy] - b[sortBy];
+            } else {
+                return b[sortBy] - a[sortBy];
+            }
+        });
+
+        res.status(200).json(uniquePosts);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({
+            "error": "Internal server error"
+        });
+    }
+}; */
